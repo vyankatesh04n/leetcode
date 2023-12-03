@@ -1,4 +1,4 @@
-export const Login = () => {
+export const Signup = () => {
 
     return (
         <div className="bg-info-subtle min-vh-100 pt-5">
