@@ -2,25 +2,31 @@
 export const ProblemList = ({problems}) => {
 
     return (
-        <div className="container">
-            <table className="table table-bordered table-striped">
-                <thead className="text-center">
-                    <tr>
-                        <th>Title</th>
-                        <th>Difficulty</th>
-                        <th>Acceptance</th>
-                    </tr>
-                </thead>
-                <tbody className="text-center">
-                    {problems.map((problem, index) => (
-                        <tr key={index}>
-                            <td>{problem.title}</td>
-                            <td>{problem.difficulty}</td>
-                            <td>{problem.acceptance}</td>
+        <div className="container-fluid bg-info-subtle min-vh-100 pt-5">
+            <div className="container">
+                <table className=" table table-bordered table-striped">
+                    <thead className="text-center">
+                        <tr>
+                            <th>Title</th>
+                            <th>Difficulty</th>
+                            <th>Acceptance</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="text-center">
+                        {problems.map((problem, index) => (
+                            <tr key={index}>
+                                <td>
+                                    <a href={`/problem/${index}`}>
+                                        {problem.title}
+                                    </a>
+                                </td>
+                                <td>{problem.difficulty}</td>
+                                <td>{problem.acceptance}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-    )
+    )        
 }

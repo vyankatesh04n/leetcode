@@ -61,8 +61,8 @@ app.post('/login', (req, res) => {
 
 
 app.get ('/questions', (req, res) => {
-  res.send(200).json(questions);
-  // res.send(questions);
+  // res.sendStatus(200).json(questions);
+  res.send(questions);
 })
 
 

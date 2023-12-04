@@ -1,11 +1,14 @@
-import { Navbar } from "./pages/navbar"
-import { Routes } from "./Routes"
+import { R } from "./Routes.jsx"
+// import { Navbar } from "./pages/navbar"
 
-export const App = () => {
+function App () {
   return (
-    <div>
-      <Navbar/>
-      <Routes/>
-    </div>
+    <>
+      {/* <Navbar/> */}
+      <R/>
+    </>
+    
   )
 }
+
+export default App;

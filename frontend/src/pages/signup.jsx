@@ -1,9 +1,13 @@
-export const Signup = () => {
+// import { Navbar } from "./navbar.jsx"
+// import React from "react";
+const Signup = () =>{
 
     return (
+        <>
+        {/* <Navbar/> */}
         <div className="bg-info-subtle min-vh-100 pt-5">
         <div className="containe text-center mb-5">
-            <h2>sign-up</h2>
+            <h2>sign up</h2>
         </div>
         <div className="containe d-flex justify-content-center align-items-center">
             <form>
@@ -19,5 +23,8 @@ export const Signup = () => {
             </form>
         </div>
         </div>
+        </>
     )
 }
+
+export default Signup;

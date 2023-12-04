@@ -1,6 +1,10 @@
-export const Login = () => {
+// import { Navbar } from "./navbar.jsx"
+// import React from "react";
+const Login = () => {
 
     return (
+        <>
+        {/* <Navbar/> */}
         <div className="bg-info-subtle min-vh-100 pt-5">
         <div className="containe text-center mb-5">
             <h2>Login</h2>
@@ -19,5 +23,8 @@ export const Login = () => {
             </form>
         </div>
         </div>
+        </>
     )
 }
+
+export default Login;

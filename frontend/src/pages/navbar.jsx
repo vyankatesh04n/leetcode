@@ -1,8 +1,8 @@
-export const Navbar = () => {
+function Navbar ()  {
     return(
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="container-fluid ms-4">
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/">
                 <img src="../src/assets/leetcode.png" alt="Logo" width="30" height="24" className="d-inline-block align-text-top me-1"></img>
                     Leetcode
                 </a>
@@ -12,10 +12,13 @@ export const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item me-5">
-                            <a className="nav-link" href="signup">Log in</a>
+                            <a className="nav-link" href="/problems">Problems</a>
                         </li>
                         <li className="nav-item me-5">
-                            <a className="nav-link" href="login">Sign up</a>
+                            <a className="nav-link" href="login">Log in</a>
+                        </li>
+                        <li className="nav-item me-5">
+                            <a className="nav-link" href="signup">Sign up</a>
                         </li>
                     </ul>
                 </div>
@@ -23,3 +26,5 @@ export const Navbar = () => {
         </nav>
     )
 }
+
+export default Navbar;
