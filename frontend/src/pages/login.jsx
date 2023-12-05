@@ -1,6 +1,9 @@
-// import { Navbar } from "./navbar.jsx"
-// import React from "react";
-const Login = () => {
+import { useState } from "react";
+
+const Signup = () =>{
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     return (
         <>
@@ -13,13 +16,35 @@ const Login = () => {
             <form>
                 <div className="form-group">
                     <label htmlFor="exampleInputEmail1" className="mb-2">Email address</label>
-                    <input type="email" className="form-control mb-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
+                    <input onChange={e => setEmail(e.target.value)} type="email" className="form-control mb-4" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="exampleInputPassword1" className="mb-2">Password</label>
-                    <input type="password" className="form-control mb-5" id="exampleInputPassword1" placeholder="Password"/>
+                    <input onChange={e => setPassword(e.target.value)} type="password" className="form-control mb-4" id="exampleInputPassword1" placeholder="Password"/>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="submit" className="btn btn-primary" onClick={async (e) => {
+                    e.preventDefault()
+                    try{
+                    const response = await fetch('http://localhost:3000/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            password: password
+                        })
+                    })
+                    const json = await response.json();
+                    console.log(json);
+                    }
+                    catch(error) {
+                        console.error(error);
+                    }
+                    
+                    }}>
+                    Submit
+                </button>
             </form>
         </div>
         </div>
@@ -27,4 +52,4 @@ const Login = () => {
     )
 }
 
-export default Login;
+export default Signup;

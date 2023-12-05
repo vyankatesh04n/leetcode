@@ -1,8 +1,17 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const cors = require('cors');
+
+const bodyParser = require("body-parser");
+var jsonParser = bodyParser.json();
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
+app.use(cors());
+app.use(jsonParser);
 
 const users = [];
+
 const questions = [
   {
     id: 1,
@@ -26,7 +35,7 @@ const submissions = [];
 
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.json(users);
 })
 
 
@@ -34,16 +43,17 @@ app.post('/signup', (req, res) => {
   const { email, password, isAdmin } = req.body;
 
   // Check if email already exists
-  const userExists = users.find(user => user.email === email);
+  const userExists = users.some(user => user.email === email);
   if (userExists) {
     return res.status(400).json({ error: 'Email already exists' });
   }
 
-  // Save email and password in users array
-  const newUser = { email, password };
+  // Save email, password and isAdmin in users array
+  const newUser = { email, password, isAdmin };
   users.push(newUser);
 
-  res.status(200).json({ message: 'Signup successful' });
+  // Respond with status 200 and the new user
+  res.status(200).json({message: 'success'});
 });
 
 
