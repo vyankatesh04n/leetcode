@@ -1,5 +1,22 @@
 /* eslint-disable react/prop-types */
-export const ProblemList = ({problems}) => {
+import { useEffect, useState } from "react"
+export const ProblemList = () => {
+    const [problems, setProblems] = useState([]);
+
+    const init = async () => {
+        const response = await fetch('http://localhost:3000/questions',{
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const json = await response.json();
+        setProblems(json);
+    }
+
+    useEffect(() => {
+        init();
+    }, []);
 
     return (
         <div className="container-fluid bg-info-subtle min-vh-100 pt-5">

@@ -1,22 +1,22 @@
 /* eslint-disable react/prop-types */
-import {BrowserRouter as Router, Routes, Route, useParams} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Login from "./pages/login"
 import Signup  from "./pages/signup"
 import Navbar from './pages/navbar'
 import { ProblemList } from './pages/problem-list'
 import { Problem } from './pages/problem'
 
-const Prob = ({probs}) => {
-  const {id} = useParams();
-  const problem = probs[parseInt(id, 10)];
+// const Prob = ({probs}) => {
+//   const {id} = useParams();
+//   const problem = probs[parseInt(id, 10)];
 
-  return(
-    <>
-      <Navbar/>
-      <Problem p={problem}/>
-    </>
-  )
-}
+//   return(
+//     <>
+//       <Navbar/>
+//       <Problem p={problem}/>
+//     </>
+//   )
+// }
 
 export const R = () => {
   const problems = [
@@ -95,14 +95,17 @@ export const R = () => {
           element={
           <>
           <Navbar/>
-          <ProblemList problems={problems}/>
+          <ProblemList />
           </>
           }
         />
 
         <Route exact path="/problem/:id" 
           element={
-            <Prob probs={problems}/>
+            <>
+          <Navbar/>
+          <Problem />
+          </>
           }
         />
 

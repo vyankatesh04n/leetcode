@@ -14,19 +14,45 @@ const users = [];
 
 const questions = [
   {
-    id: 1,
-    question: 'find maximum element in an array',
-    testCase: [{
+    id: 0,
+    title: 'find maximum element in an array',
+    difficulty: 'easy',
+    acceptance: '52%',
+    io: [{
       input: [1, 2, 3, 4, 5],
       output: 5
+    },
+    {
+      input: [4, 2, 9, -3, 5],
+      output: 9
+    }]
+  },
+  {
+    id: 1,
+    title: 'Remove Linked List Elements',
+    difficulty: 'hard',
+    acceptance: ' 30%',
+    io: [{
+      input: [1, 2, 3, 4, 5],
+      output: 5
+    },
+    {
+      input: [4, 2, 9, -3, 5],
+      output: 9
     }]
   },
   {
     id: 2,
-    question: 'find middle element in an array',
-    testCase: [{
+    title: 'Bitwise AND of Numbers Range',
+    difficulty: 'medium',
+    acceptance: ' 45%',
+    io: [{
       input: [1, 2, 3, 4, 5],
-      output: 3
+      output: 5
+    },
+    {
+      input: [4, 2, 9, -3, 5],
+      output: 9
     }]
   }
 ];
@@ -72,12 +98,20 @@ app.post('/login', (req, res) => {
 
 app.get ('/questions', (req, res) => {
   // res.sendStatus(200).json(questions);
-  res.send(questions);
+  res.json(questions);
+})
+
+
+app.get('/question/:id', (req, res) => {
+  const { id } = req.params;
+  // const question = questions.find(q => q.id === parseInt(id));
+  // res.json(question);
+  res.json(questions[parseInt(id, 10)]);
 })
 
 
 app.post('/add-question', (req, res) => {
-  const { id, question, testCase, userId } = req.body;
+  const { title, difficulty, acceptance, io , userId } = req.body;
 
   const isAdmin = users.find(user => user.email === userId && user.isAdmin);
 
@@ -86,9 +120,11 @@ app.post('/add-question', (req, res) => {
   }
 
   const newQuestion = {
-    id,
-    question,
-    testCase
+    id: questions.length,
+    title,
+    difficulty,
+    acceptance,
+    io
   };
   
   questions.push(newQuestion);
