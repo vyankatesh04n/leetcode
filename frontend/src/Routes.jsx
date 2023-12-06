@@ -19,48 +19,7 @@ import { Problem } from './pages/problem'
 // }
 
 export const R = () => {
-  const problems = [
-    {
-      title: 'find maximum element in an array',
-      difficulty: 'easy',
-      acceptance: '52%',
-      io: [{
-        input: [1, 2, 3, 4, 5],
-        output: 5
-      },
-      {
-        input: [4, 2, 9, -3, 5],
-        output: 9
-      }]
-    },
-    {
-      title: 'Remove Linked List Elements',
-      difficulty: 'hard',
-      acceptance: ' 30%',
-      io: [{
-        input: [1, 2, 3, 4, 5],
-        output: 5
-      },
-      {
-        input: [4, 2, 9, -3, 5],
-        output: 9
-      }]
-    },
-    {
-      title: 'Bitwise AND of Numbers Range',
-      difficulty: 'medium',
-      acceptance: ' 45%',
-      io: [{
-        input: [1, 2, 3, 4, 5],
-        output: 5
-      },
-      {
-        input: [4, 2, 9, -3, 5],
-        output: 9
-      }]
-    }
-  ]
-
+  
   return(
     <Router>
       <Routes>
