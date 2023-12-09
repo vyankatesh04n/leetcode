@@ -1,61 +1,46 @@
 const express = require('express')
+const cors = require('cors');
+const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
+require('dotenv').config();
+
 const app = express()
 const port = 3000
-const cors = require('cors');
+const MONGODB_URI = process.env.MONGODB_URI;
 
-const bodyParser = require("body-parser");
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(cors());
 app.use(jsonParser);
 
-const users = [];
+mongoose.connect(MONGODB_URI);
 
-const questions = [
-  {
-    id: 0,
-    title: 'find maximum element in an array',
-    difficulty: 'easy',
-    acceptance: '52%',
-    io: [{
-      input: [1, 2, 3, 4, 5],
-      output: 5
-    },
-    {
-      input: [4, 2, 9, -3, 5],
-      output: 9
-    }]
-  },
-  {
-    id: 1,
-    title: 'Remove Linked List Elements',
-    difficulty: 'hard',
-    acceptance: ' 30%',
-    io: [{
-      input: [1, 2, 3, 4, 5],
-      output: 5
-    },
-    {
-      input: [4, 2, 9, -3, 5],
-      output: 9
-    }]
-  },
-  {
-    id: 2,
-    title: 'Bitwise AND of Numbers Range',
-    difficulty: 'medium',
-    acceptance: ' 45%',
-    io: [{
-      input: [1, 2, 3, 4, 5],
-      output: 5
-    },
-    {
-      input: [4, 2, 9, -3, 5],
-      output: 9
-    }]
-  }
-];
+let usersSchema = new mongoose.Schema({
+  email: String,
+  password: String
+})
+
+const User = mongoose.model("User", usersSchema);
+
+let iosSchema = new mongoose.Schema({
+  input: [Number],
+  output: Number
+})
+
+const IO = mongoose.model("IO", iosSchema);
+
+let questionsSchema = new mongoose.Schema({
+  id: Number,
+  title: String,
+  difficulty: String,
+  acceptance: String,
+  io: [iosSchema]
+})
+
+const Question = mongoose.model("Question", questionsSchema);
+
+const users = [];
 
 const submissions = [];
 
@@ -96,18 +81,27 @@ app.post('/login', (req, res) => {
 })
 
 
-app.get ('/questions', (req, res) => {
-  // res.sendStatus(200).json(questions);
-  res.json(questions);
-})
+app.get('/questions', async (req, res) => {
+  try {
+    const questions = await Question.find();
+    res.json(questions);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 
-app.get('/question/:id', (req, res) => {
-  const { id } = req.params;
-  // const question = questions.find(q => q.id === parseInt(id));
-  // res.json(question);
-  res.json(questions[parseInt(id, 10)]);
-})
+app.get('/question/:id', async (req, res) => {
+  try {
+    const question = await Question.findOne({ id: req.params.id });
+    if (!question) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+    res.json(question);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 
 app.post('/add-question', (req, res) => {
