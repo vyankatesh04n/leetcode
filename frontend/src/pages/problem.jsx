@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-export const Problem = () => {
+export const Problem = ({ userName}) => {
 
     const {id} = useParams();
     const [problem, setProblem] = useState([]);
@@ -23,6 +23,8 @@ export const Problem = () => {
     
 
     return(
+        {userName}?(
+        <>
         <div className="container">
             <div className="row">
                 <div className="col-6">
@@ -51,5 +53,7 @@ export const Problem = () => {
                 </div>
             </div>        
         </div>
+        </>
+        ): null
     )
 }

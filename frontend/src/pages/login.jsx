@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const Signup = () =>{
+const Login = ({ userName, onUserNameChange}) =>{
 
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
@@ -61,7 +62,6 @@ const Signup = () =>{
 
     return (
         <>
-        {/* <Navbar/> */}
         <div className="bg-info-subtle min-vh-100 pt-5">
         <div className="containe text-center mb-5">
             <h2>Login</h2>
@@ -90,4 +90,4 @@ const Signup = () =>{
     )
 }
 
-export default Signup;
+export default Login ;

@@ -3,12 +3,19 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import Login from "./pages/login"
 import Signup  from "./pages/signup"
 import Navbar from './pages/navbar'
+import Nav from './pages/nav'
 import Home from './pages/home'
 import { ProblemList } from './pages/problem-list'
 import { Problem } from './pages/problem'
-
+import { useState } from 'react';
 
 export const App = () => {
+
+  const [username, setUsername] = useState("");
+
+  const handleUserNameChange = (username) => {
+    setUsername(username);
+  }
   
   return(
     <Router>
@@ -16,8 +23,8 @@ export const App = () => {
         <Route exact path="/" 
           element={
           <>
-          <Navbar/>
-          <Home/>
+          <Navbar userName={username}/>
+          <Home userName={username}/>
           </>
           }
         />
@@ -25,8 +32,8 @@ export const App = () => {
         <Route exact path="/login" 
           element={
           <>
-          <Navbar/>
-          <Login/>
+          <Navbar userName={username}/>
+          <Login userName={username}/>
           </>
           }
         />
@@ -34,8 +41,8 @@ export const App = () => {
         <Route exact path="/signup" 
           element={
           <>
-          <Navbar/>
-          <Signup/>
+          <Nav/>
+          <Signup userName={username} onUserNameChange={handleUserNameChange}/>
           </>
           }
         />
@@ -43,8 +50,8 @@ export const App = () => {
         <Route exact path="/problems" 
           element={
           <>
-          <Navbar/>
-          <ProblemList />
+          <Navbar userName={username}/>
+          <ProblemList userName={username}/>
           </>
           }
         />
@@ -52,8 +59,8 @@ export const App = () => {
         <Route exact path="/problem/:id" 
           element={
             <>
-          <Navbar/>
-          <Problem />
+          <Navbar userName={username}/>
+          <Problem userName={username}/>
           </>
           }
         />

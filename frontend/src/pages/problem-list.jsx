@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-export const ProblemList = () => {
+export const ProblemList = ({ userName}) => {
     const [problems, setProblems] = useState([]);
 
     const init = async () => {
@@ -19,6 +19,8 @@ export const ProblemList = () => {
     }, []);
 
     return (
+        {userName} ? (
+        <>
         <div className="container-fluid bg-info-subtle min-vh-100 pt-5">
             <div className="container">
                 <table className=" table table-bordered table-striped">
@@ -45,5 +47,7 @@ export const ProblemList = () => {
                 </table>
             </div>
         </div>
+        </>
+        ) : null
     )        
 }
