@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export const Problem = () => {
 
@@ -8,14 +9,12 @@ export const Problem = () => {
     const [problem, setProblem] = useState([]);
 
     const init = async () => {
-        const response = await fetch('http://localhost:3000/question/' + id,{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
-        const json = await response.json();
-        setProblem(json);
+        try{
+            const response = await axios.get('http://localhost:3000/question/' + id)
+            setProblem(response.data);
+        } catch(error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
     useEffect(() => {

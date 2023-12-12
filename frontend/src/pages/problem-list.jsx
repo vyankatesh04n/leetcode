@@ -1,17 +1,17 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 export const ProblemList = () => {
     const [problems, setProblems] = useState([]);
 
     const init = async () => {
-        const response = await fetch('http://localhost:3000/questions',{
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        });
-        const json = await response.json();
-        setProblems(json);
+        try{
+            const response = await axios.get('http://localhost:3000/questions');
+            setProblems(response.data);
+        } catch(error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
     useEffect(() => {

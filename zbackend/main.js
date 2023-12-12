@@ -3,6 +3,8 @@ const cors = require('cors');
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 require('dotenv').config();
+const cookieParser = require("cookie-parser");
+const authRoute = require("./Routes/AuthRoute");
 
 const app = express()
 const port = 3000
@@ -11,36 +13,45 @@ const MONGODB_URI = process.env.MONGODB_URI;
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
 app.use(cors());
 app.use(jsonParser);
+app.use(cookieParser());
 
 mongoose.connect(MONGODB_URI);
 
-let usersSchema = new mongoose.Schema({
-  email: String,
-  password: String
-})
+// let usersSchema = new mongoose.Schema({
+//   email: String,
+//   password: String
+// })
 
-const User = mongoose.model("User", usersSchema);
+// const User = mongoose.model("User", usersSchema);
 
-let iosSchema = new mongoose.Schema({
-  input: [Number],
-  output: Number
-})
+// let iosSchema = new mongoose.Schema({
+//   input: [Number],
+//   output: Number
+// })
 
-const IO = mongoose.model("IO", iosSchema);
+// const IO = mongoose.model("IO", iosSchema); 
 
-let questionsSchema = new mongoose.Schema({
-  id: Number,
-  title: String,
-  difficulty: String,
-  acceptance: String,
-  io: [iosSchema]
-})
+// let questionsSchema = new mongoose.Schema({
+//   id: Number,
+//   title: String,
+//   difficulty: String,
+//   acceptance: String,
+//   io: [iosSchema]
+// })
 
-const Question = mongoose.model("Question", questionsSchema);
+// const Question = mongoose.model("Question", questionsSchema);
 
-const users = [];
+// const users = [];
 
 const submissions = [];
 
@@ -49,59 +60,73 @@ app.get('/', (req, res) => {
   res.json(users);
 })
 
+// app.get('/question/:id', async (req, res) => {
+//   try {
+//     const question = await Question.findOne({ id: req.params.id });
+//     if (!question) {
+//       return res.status(404).json({ message: 'Question not found' });
+//     }
+//     res.json(question);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
-app.post('/signup', (req, res) => {
-  const { email, password, isAdmin } = req.body;
-
-  // Check if email already exists
-  const userExists = users.some(user => user.email === email);
-  if (userExists) {
-    return res.status(400).json({ error: 'Email already exists' });
-  }
-
-  // Save email, password and isAdmin in users array
-  const newUser = { email, password, isAdmin };
-  users.push(newUser);
-
-  // Respond with status 200 and the new user
-  res.status(200).json({message: 'success'});
-});
+app.use ('/', authRoute);
 
 
-app.post('/login', (req, res) => {
-  const { email, password } = req.body;
+// app.post('/signup', (req, res) => {
+//   const { email, password, isAdmin } = req.body;
 
-  // Check if email and password match
-  const user = users.find(user => user.email === email && user.password === password);
-  if (!user) {
-    return res.status(401).json({ error: 'Invalid email or password' });
-  }
+//   // Check if email already exists
+//   const userExists = users.some(user => user.email === email);
+//   if (userExists) {
+//     return res.status(400).json({ error: 'Email already exists' });
+//   }
 
-  res.status(200).json({ message: 'Login successful' });
-})
+//   // Save email, password and isAdmin in users array
+//   const newUser = { email, password, isAdmin };
+//   users.push(newUser);
 
-
-app.get('/questions', async (req, res) => {
-  try {
-    const questions = await Question.find();
-    res.json(questions);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+//   // Respond with status 200 and the new user
+//   res.status(200).json({message: 'success'});
+// });
 
 
-app.get('/question/:id', async (req, res) => {
-  try {
-    const question = await Question.findOne({ id: req.params.id });
-    if (!question) {
-      return res.status(404).json({ message: 'Question not found' });
-    }
-    res.json(question);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// app.post('/login', (req, res) => {
+//   const { email, password } = req.body;
+
+//   // Check if email and password match
+//   const user = users.find(user => user.email === email && user.password === password);
+//   if (!user) {
+//     return res.status(401).json({ error: 'Invalid email or password' });
+//   }
+
+//   res.status(200).json({ message: 'Login successful' });
+// })
+
+
+// app.get('/questions', async (req, res) => {
+//   try {
+//     const questions = await Question.find();
+//     res.json(questions);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
+
+
+// app.get('/question/:id', async (req, res) => {
+//   try {
+//     const question = await Question.findOne({ id: req.params.id });
+//     if (!question) {
+//       return res.status(404).json({ message: 'Question not found' });
+//     }
+//     res.json(question);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
+// });
 
 
 app.post('/add-question', (req, res) => {
