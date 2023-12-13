@@ -1,44 +1,45 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import axios from "axios";
+// import axios from "axios";
 
-function Navbar ({ userName})  {
+function Navbar ({ onUserNameChange})  {
     
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
-    const [changedName, setChangedName] = useState(userName);
+    // const [changedName, setChangedName] = useState(userName);
 
-    const isChanged = () => {
-        if (changedName !== userName) {
-            userName = changedName;
-        }
-    }
+    // const isChanged = () => {
+    //     if (changedName !== userName) {
+    //         userName = changedName;
+    //     }
+    // }
 
-    useEffect(() => {
-        const verifyCookie = async () => {
-        if (!cookies.token) {
-            setChangedName("");
-            navigate("/login");
-        }
-        const { data } = await axios.post(
-            "http://localhost:3000",
-            {},
-            { withCredentials: true }
-        );
-        const { status, user } = data;
-        setChangedName(user);
-        return status
-            ? console.log("success")
-            : (removeCookie("token"), navigate("/login"));
-        };
-        verifyCookie();
-    }, [cookies, navigate, removeCookie]);
+    // useEffect(() => {
+    //     const verifyCookie = async () => {
+    //     if (!cookies.token) {
+    //         setChangedName("");
+    //         navigate("/login");
+    //     }
+    //     const { data } = await axios.post(
+    //         "http://localhost:3000",
+    //         {},
+    //         { withCredentials: true }
+    //     );
+    //     const { status, user } = data;
+    //     setChangedName(user);
+    //     return status
+    //         ? console.log("success")
+    //         : (removeCookie("token"), navigate("/login"));
+    //     };
+    //     verifyCookie();
+    // }, [cookies, navigate, removeCookie]);
 
     const Logout = () => {
         removeCookie("token");
-        isChanged();
+        onUserNameChange("");
+        // isChanged();
         navigate("/login");
     };
 
@@ -54,7 +55,7 @@ function Navbar ({ userName})  {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
-                        {{userName} ? 
+                        {/* {{userName} ?  */}
                             <ul className="navbar-nav ms-auto">
                                 <li className="nav-item me-5">
                                     <a className="nav-link" href="/problems">Problems</a>
@@ -66,7 +67,7 @@ function Navbar ({ userName})  {
                                     <button className="nav-link" onClick={Logout} >logout</button>
                                 </li>
                             </ul>
-                        :  null}
+                        {/* :  null} */}
                     </div>
                   
                 

@@ -23,8 +23,8 @@ export const App = () => {
         <Route exact path="/" 
           element={
           <>
-          <Navbar userName={username}/>
-          <Home userName={username}/>
+          <Navbar onUserNameChange={handleUserNameChange}/>
+          <Home userName={username} onUserNameChange={handleUserNameChange}/>
           </>
           }
         />
@@ -32,8 +32,8 @@ export const App = () => {
         <Route exact path="/login" 
           element={
           <>
-          <Navbar userName={username}/>
-          <Login userName={username}/>
+          <Nav />
+          <Login />
           </>
           }
         />
@@ -42,7 +42,7 @@ export const App = () => {
           element={
           <>
           <Nav/>
-          <Signup userName={username} onUserNameChange={handleUserNameChange}/>
+          <Signup />
           </>
           }
         />
@@ -50,8 +50,8 @@ export const App = () => {
         <Route exact path="/problems" 
           element={
           <>
-          <Navbar userName={username}/>
-          <ProblemList userName={username}/>
+          <Navbar onUserNameChange={handleUserNameChange}/>
+          <ProblemList />
           </>
           }
         />
@@ -59,8 +59,8 @@ export const App = () => {
         <Route exact path="/problem/:id" 
           element={
             <>
-          <Navbar userName={username}/>
-          <Problem userName={username}/>
+          <Navbar onUserNameChange={handleUserNameChange}/>
+          <Problem />
           </>
           }
         />

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const Signup = ({ userName, onUserNameChange}) =>{
+const Signup = () =>{
 
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
@@ -15,9 +15,9 @@ const Signup = ({ userName, onUserNameChange}) =>{
 
     const { email, password, username } = inputValue;
 
-    const updateUserName = (username) => {
-      onUserNameChange(username);
-    }
+    // const updateUserName = (username) => {
+    //   onUserNameChange(username);
+    // }
 
     const handleOnChange = (e) => {
         const { name, value } = e.target;
@@ -49,7 +49,7 @@ const Signup = ({ userName, onUserNameChange}) =>{
           const { success, message} = data;
           if (success) {
             handleSuccess(message);
-            updateUserName(username);
+            // updateUserName(username);
             setTimeout(() => {
               navigate("/");
             }, 1000);

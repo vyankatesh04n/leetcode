@@ -1,12 +1,16 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import axios from "axios";
 
-export const Problem = ({ userName}) => {
+export const Problem = () => {
 
     const {id} = useParams();
     const [problem, setProblem] = useState([]);
+    const navigate = useNavigate();
+    const [cookies, removeCookie] = useCookies([])
 
     const init = async () => {
         try{
@@ -18,12 +22,27 @@ export const Problem = ({ userName}) => {
     }
 
     useEffect(() => {
+        const verifyCookie = async () => {
+            if (!cookies.token) {
+              navigate("/login");
+            }
+            const { data } = await axios.post(
+              "http://localhost:3000",
+              {},
+              { withCredentials: true }
+            );
+            const { status, user } = data;
+            return status
+              ? console.log(user)
+              : (removeCookie("token"), navigate("/login"));
+            };
+            verifyCookie();
         init();
     }, []);
     
 
     return(
-        {userName}?(
+        // {userName}?(
         <>
         <div className="container">
             <div className="row">
@@ -54,6 +73,6 @@ export const Problem = ({ userName}) => {
             </div>        
         </div>
         </>
-        ): null
+        // ): null
     )
 }
