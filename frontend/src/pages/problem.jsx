@@ -4,13 +4,59 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Problem = () => {
 
+    const languages = ['C++', 'Java', 'Python'];
     const {id} = useParams();
     const [problem, setProblem] = useState([]);
     const navigate = useNavigate();
-    const [cookies, removeCookie] = useCookies([])
+    const [cookies, removeCookie] = useCookies([]);
+    const [selectedLanguage, setSelectedLanguage] = useState('C++');
+    const [code, setCode] = useState('');
+    const [email , setEmail] = useState('');
+
+    const handleLanguageChange = (event) => {
+        setSelectedLanguage(event.target.value);
+    };
+
+    const handleCodeChange = (event) => {
+        setCode(event.target.value);
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3000/submit-code', {
+                code,
+                lang: selectedLanguage,
+                qid: parseInt(id),
+                email
+            },
+            { withCredentials: true }
+            );
+            console.log(response.data);
+            if (response.data.isAccepted){
+                toast.success('Accepted', {
+                    position: "bottom-right",
+                });
+                setTimeout(() => {
+                    navigate('/');
+                }, 3000); 
+            } else {
+                toast.error('Wrong Answer', {
+                    position: "bottom-right",
+                });
+            }
+
+        } catch(error) {
+            toast.error(error, {
+                position: "bottom-right",
+            });
+            console.error('Error fetching data:', error);
+        }
+    }
 
     const init = async () => {
         try{
@@ -31,9 +77,9 @@ export const Problem = () => {
               {},
               { withCredentials: true }
             );
-            const { status, user } = data;
+            const { status, email } = data;
             return status
-              ? console.log(user)
+              ? setEmail(email)
               : (removeCookie("token"), navigate("/login"));
             };
             verifyCookie();
@@ -59,18 +105,21 @@ export const Problem = () => {
                 </div>
                 <div className="col-6">
                     <div className="col-3 my-3">
-                        <select className = "form-select" aria-label="Default select example">
-                            <option value="1">C++</option>
-                            <option value="2">Java</option>
-                            <option value="3">Python</option>
+                        <select className = "form-select" aria-label="Default select example" value={selectedLanguage} onChange={handleLanguageChange}>
+                        {languages.map((language) => (
+                            <option key={language} value={language}>
+                            {language}
+                            </option>
+                        ))}
                         </select>
                     </div>
-                        <textarea rows={20} cols={50}></textarea>
+                        <textarea value={code} onChange={handleCodeChange} rows={20} cols={50}></textarea>
                         <div>
-                            <button type="submit" className="btn btn-primary my-3">Submit</button>
+                            <button type="submit" className="btn btn-primary my-3" onClick={handleSubmit}>Submit</button>
                         </div>
                 </div>
-            </div>        
+            </div> 
+            <ToastContainer/>       
         </div>
         </>
         // ): null

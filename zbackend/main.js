@@ -129,52 +129,52 @@ app.use ('/', authRoute);
 // });
 
 
-app.post('/add-question', (req, res) => {
-  const { title, difficulty, acceptance, io , userId } = req.body;
+// app.post('/add-question', (req, res) => {
+//   const { title, difficulty, acceptance, io , userId } = req.body;
 
-  const isAdmin = users.find(user => user.email === userId && user.isAdmin);
+//   const isAdmin = users.find(user => user.email === userId && user.isAdmin);
 
-  if (!isAdmin){
-    return res.status(401).json({ error: 'Unauthorized' });
-  }
+//   if (!isAdmin){
+//     return res.status(401).json({ error: 'Unauthorized' });
+//   }
 
-  const newQuestion = {
-    id: questions.length,
-    title,
-    difficulty,
-    acceptance,
-    io
-  };
+//   const newQuestion = {
+//     id: questions.length,
+//     title,
+//     difficulty,
+//     acceptance,
+//     io
+//   };
   
-  questions.push(newQuestion);
+//   questions.push(newQuestion);
 
-  res.status(200).json({ message: 'Question added successfully' });
+//   res.status(200).json({ message: 'Question added successfully' });
 
-})
+// })
 
 
-app.post('/submissions', (req, res) => {
-  //let the user submit the code and randomly accept or reject the solution
-  //then store the submission in submissions array
+// app.post('/submissions', (req, res) => {
+//   //let the user submit the code and randomly accept or reject the solution
+//   //then store the submission in submissions array
 
-  const { userId, questionId , code} = req.body;
+//   const { userId, questionId , code} = req.body;
 
-  // randomly accept or reject the solution
-  const isAccepted = Math.random() < 0.5;
+//   // randomly accept or reject the solution
+//   const isAccepted = Math.random() < 0.5;
 
-  // store the submission in submissions array
-  const submission = {
-    userId,
-    questionId,
-    code,
-    isAccepted
-  };
+//   // store the submission in submissions array
+//   const submission = {
+//     userId,
+//     questionId,
+//     code,
+//     isAccepted
+//   };
 
-  submissions.push(submission);
+//   submissions.push(submission);
 
-  res.status(200).json({ message: 'Submission stored successfully' });
+//   res.status(200).json({ message: 'Submission stored successfully' });
   
-})
+// })
 
 
 app.listen(port, () => {

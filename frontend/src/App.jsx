@@ -7,7 +7,9 @@ import Nav from './pages/nav'
 import Home from './pages/home'
 import { ProblemList } from './pages/problem-list'
 import { Problem } from './pages/problem'
+import { Submissions } from './pages/submissions'
 import { useState } from 'react';
+import { QnSub } from './pages/qnSub'
 
 export const App = () => {
 
@@ -61,6 +63,24 @@ export const App = () => {
             <>
           <Navbar onUserNameChange={handleUserNameChange}/>
           <Problem />
+          </>
+          }
+        />
+
+        <Route exact path="/submissions" 
+          element={
+          <>
+          <Navbar onUserNameChange={handleUserNameChange}/>
+          <Submissions />
+          </>
+          }
+        />
+
+        <Route exact path="/submission/:email/:qid" 
+          element={
+          <>
+          <Navbar onUserNameChange={handleUserNameChange}/>
+          <QnSub />
           </>
           }
         />

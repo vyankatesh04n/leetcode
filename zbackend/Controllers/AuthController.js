@@ -1,4 +1,7 @@
 const User = require("../Models/UserModel");
+const Sub = require("../Models/SubModel");
+const UserSub = require("../Models/UserSubModel");
+const QnSub = require("../Models/QnSubModel");
 const Question = require("../Models/QuestionModel");
 const { createSecretToken } = require("../Util/SecretToken");
 const mongoose = require('mongoose');
@@ -63,6 +66,51 @@ module.exports.Login = async (req, res, next) => {
   }
 }
 
+module.exports.codeSubmit = async (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  res.header("Access-Control-Allow-Credentials", true);
+
+  try{
+    //this code is for handling post request
+    const { code, lang, email, qid } = req.body;
+    const isAccepted = Math.random() < 0.5;
+
+    let sub = await Sub.findOne({ email });
+
+    if (!sub){
+      sub = await Sub.create({ email, ques: [] });
+    }
+
+    let qn = sub.ques.find(qn => qn.qid == qid);
+    const question = await Question.findOne({ id: qid });
+
+    if (!qn && question){
+      const newSubmission = await QnSub.create({ sid: 0, code, lang, isAccepted });
+      qn = await UserSub.create({ qid, qnSub: [newSubmission] });
+      sub.ques.push(qn);
+      await sub.save()
+        .catch(err => console.log(err));
+    }
+
+    if (qn) {
+      const sid = qn.qnSub.length;
+      const newSubmission = await QnSub.create({ sid, code, lang, isAccepted });
+      qn.qnSub.push(newSubmission);
+      await qn.save()
+        .catch(err => console.log(err));
+      await sub.save()
+        .catch(err => console.log(err));
+    }
+
+    res.status(201).json({ message: 'Submission created successfully',sub, isAccepted }); 
+    // next();
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
 module.exports.Questions = async (req, res) => {
   try {
     const questions = await Question.find();
@@ -79,6 +127,32 @@ module.exports.Question = async (req, res) => {
       return res.status(404).json({ message: 'Question not found' });
     }
     res.json(question);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
+module.exports.Submissions = async (req, res) => {
+  try {
+    const submissions = await Sub.findOne({ email: req.params.email });
+    const qidArray = [];
+    submissions.ques.forEach(qn => {
+      qidArray.push(qn.qid);
+    })
+    const questions = await Question.find({ id: { $in: qidArray } });
+    res.json(questions);
+    // res.json(submissions.ques.qid);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+}
+
+module.exports.Submission = async (req, res) => {
+  try {
+    const user = await Sub.findOne({ email: req.params.email});
+    const submission = user.ques.find(qn => qn.qid == req.params.id);
+    // res.json(user);
+    res.json(submission.qnSub);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
