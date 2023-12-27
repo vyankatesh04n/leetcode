@@ -41,8 +41,8 @@ export const QnSub = () => {
             } 
         }                     
         const initAfterVerification = async () => {
-            await verifyCookie(); // Wait for verifyCookie to complete
-            init(); // Call init() after verifyCookie completes
+            await verifyCookie();
+            init();
         };
 
         initAfterVerification();
@@ -50,7 +50,6 @@ export const QnSub = () => {
 
     return (
         <>
-        {/* {userName ? ( */}
         <div className="container-fluid bg-info-subtle min-vh-100 pt-5">
             <div className="container">
                 <table className=" table table-bordered table-striped">
@@ -69,14 +68,12 @@ export const QnSub = () => {
                                 </td>
                                 <td>{submission.code}</td>
                                 {submission.isAccepted ? <td className="text-success">Accepted</td> : <td className="text-danger">Not Accepted</td>}
-                                {/* <td></td> */}
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
         </div>
-        {/* ) : null} */}
         </>
     )        
 }

@@ -15,10 +15,6 @@ const Signup = () =>{
 
     const { email, password, username } = inputValue;
 
-    // const updateUserName = (username) => {
-    //   onUserNameChange(username);
-    // }
-
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setInputValue({

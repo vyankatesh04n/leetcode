@@ -40,18 +40,15 @@ export const Submissions = () => {
             } 
         }                     
         const initAfterVerification = async () => {
-            await verifyCookie(); // Wait for verifyCookie to complete
-            init(); // Call init() after verifyCookie completes
+            await verifyCookie();
+            init();
         };
 
         initAfterVerification();
     }, [email]);
 
-    // console.log(userName);
-
     return (
         <>
-        {/* {userName ? ( */}
         <div className="container-fluid bg-info-subtle min-vh-100 pt-5">
             <div className="container">
                 <table className=" table table-bordered table-striped">
@@ -78,7 +75,6 @@ export const Submissions = () => {
                 </table>
             </div>
         </div>
-        {/* ) : null} */}
         </>
     )        
 }

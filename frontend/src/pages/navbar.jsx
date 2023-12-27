@@ -17,7 +17,6 @@ function Navbar ({ onUserNameChange})  {
     const Logout = () => {
         removeCookie("token");
         onUserNameChange("");
-        // isChanged();
         navigate("/login");
     };
 

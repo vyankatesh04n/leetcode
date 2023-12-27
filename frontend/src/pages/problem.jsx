@@ -88,7 +88,6 @@ export const Problem = () => {
     
 
     return(
-        // {userName}?(
         <>
         <div className="container">
             <div className="row">
@@ -122,6 +121,5 @@ export const Problem = () => {
             <ToastContainer/>       
         </div>
         </>
-        // ): null
     )
 }

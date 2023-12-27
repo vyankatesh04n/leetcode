@@ -37,11 +37,8 @@ export const ProblemList = () => {
         init();
     }, []);
 
-    // console.log(userName);
-
     return (
         <>
-        {/* {userName ? ( */}
         <div className="container-fluid bg-info-subtle min-vh-100 pt-5">
             <div className="container">
                 <table className=" table table-bordered table-striped">
@@ -68,7 +65,6 @@ export const ProblemList = () => {
                 </table>
             </div>
         </div>
-        {/* ) : null} */}
         </>
     )        
 }
