@@ -5,6 +5,7 @@ import axios from "axios";
 /* eslint-disable react/prop-types */
 
 const Home = ({userName, onUserNameChange }) => {
+  const url = "https://leetcode-liart.vercel.app";
   const navigate = useNavigate();
   const [cookies, removeCookie] = useCookies([]);
 
@@ -14,7 +15,7 @@ const Home = ({userName, onUserNameChange }) => {
         navigate("/login");
       }
       const { data } = await axios.post(
-        "http://localhost:3000",
+        url,
         {},
         { withCredentials: true }
       );

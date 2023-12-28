@@ -6,6 +6,8 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 export const QnSub = () => {
+    const url = "https://leetcode-liart.vercel.app";
+
     const [submissions, setSubmissions] = useState([]);
     const {email, qid} = useParams();
     const navigate = useNavigate();
@@ -13,7 +15,7 @@ export const QnSub = () => {
 
     const init = async () => {
         try{
-            const response = await axios.get('http://localhost:3000/submission/'+ email + "/" + qid);
+            const response = await axios.get(url + "/submissions/" + email + "/" + qid);
             console.log(response.data);
             setSubmissions(response.data);
         } catch(error) {
@@ -28,7 +30,7 @@ export const QnSub = () => {
                     navigate("/login");
                 }
                 const { data } = await axios.post(
-                    "http://localhost:3000",
+                    url,
                     {},
                     { withCredentials: true }
                 );

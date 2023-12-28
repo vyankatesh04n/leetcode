@@ -7,6 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 export const Problem = () => {
+    const url = "https://leetcode-liart.vercel.app";
 
     const languages = ['C++', 'Java', 'Python'];
     const {id} = useParams();
@@ -28,7 +29,7 @@ export const Problem = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/submit-code', {
+            const response = await axios.post(url + "/submit", {
                 code,
                 lang: selectedLanguage,
                 qid: parseInt(id),
@@ -60,7 +61,7 @@ export const Problem = () => {
 
     const init = async () => {
         try{
-            const response = await axios.get('http://localhost:3000/question/' + id)
+            const response = await axios.get(url + "/question/" + id)
             setProblem(response.data);
         } catch(error) {
             console.error('Error fetching data:', error);
@@ -73,7 +74,7 @@ export const Problem = () => {
               navigate("/login");
             }
             const { data } = await axios.post(
-              "http://localhost:3000",
+              url,
               {},
               { withCredentials: true }
             );

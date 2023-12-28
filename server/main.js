@@ -15,7 +15,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(
   cors({
-    origin: ["http://localhost:5173"],
+    origin: ["https://leetcode-frontend-theta.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })

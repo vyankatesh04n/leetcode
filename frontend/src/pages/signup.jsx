@@ -5,6 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () =>{
+    const url = "https://leetcode-liart.vercel.app";
 
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
@@ -36,7 +37,7 @@ const Signup = () =>{
         e.preventDefault();
         try {
           const { data } = await axios.post(
-            "http://localhost:3000/signup",
+            url + "/signup",
             {
               ...inputValue,
             },

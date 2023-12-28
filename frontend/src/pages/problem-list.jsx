@@ -5,6 +5,8 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 export const ProblemList = () => {
+    const url = "https://leetcode-liart.vercel.app";
+
     const [problems, setProblems] = useState([]);
     const navigate = useNavigate();
     const [cookies, removeCookie] = useCookies([]);
@@ -24,7 +26,7 @@ export const ProblemList = () => {
               navigate("/login");
             }
             const { data } = await axios.post(
-              "http://localhost:3000",
+              url,
               {},
               { withCredentials: true }
             );
