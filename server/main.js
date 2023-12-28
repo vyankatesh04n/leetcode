@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 
 const app = express()
-const url = "https://leetcode-liart.vercel.app";
+const url = "https://leetcode-liart.vercel.app/";
 const MONGODB_URI = process.env.MONGODB_URI;
 
 var jsonParser = bodyParser.json();
@@ -15,7 +15,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(
   cors({
-    origin: ["https://leetcode-frontend-theta.vercel.app"],
+    origin: ["https://leetcode-frontend-theta.vercel.app/"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
