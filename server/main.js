@@ -7,7 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 
 const app = express()
-const port = 3000
+const url = "https://leetcode-liart.vercel.app";
 const MONGODB_URI = process.env.MONGODB_URI;
 
 var jsonParser = bodyParser.json();
@@ -33,6 +33,6 @@ app.get('/', (req, res) => {
 
 app.use ('/', authRoute);
 
-app.listen(port, () => {
-  console.log(`listening at ${port}`)
+app.listen(url, () => {
+  console.log(`listening`);
 })
