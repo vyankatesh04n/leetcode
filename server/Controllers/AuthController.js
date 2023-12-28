@@ -8,7 +8,9 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 
 module.exports.Signup = async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  const url = "https://leetcode-frontend-theta.vercel.app";
+
+  res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", true);
@@ -36,7 +38,9 @@ module.exports.Signup = async (req, res, next) => {
 };
 
 module.exports.Login = async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  const url = "https://leetcode-frontend-theta.vercel.app";
+
+  res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", true);
@@ -67,7 +71,9 @@ module.exports.Login = async (req, res, next) => {
 }
 
 module.exports.codeSubmit = async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  const url = "https://leetcode-frontend-theta.vercel.app";
+
+  res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", true);

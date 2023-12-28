@@ -3,7 +3,9 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 module.exports.userVerification = (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+  const url = "https://leetcode-frontend-theta.vercel.app";
+
+  res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", true);
