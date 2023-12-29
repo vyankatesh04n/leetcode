@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
 
 const app = express()
+const PORT = 3001
 const MONGODB_URI = process.env.MONGODB_URI;
 
 var jsonParser = bodyParser.json();
@@ -26,9 +27,9 @@ app.use(cookieParser());
 
 mongoose.connect(MONGODB_URI);
 
-app.use('/', (req, res) => {
-  res.send(200).json({message: 'Hello'});
-})
+// app.use('/', (req, res) => {
+//   res.sendStatus(200).json({message: 'Hello'});
+// })
 
 app.use ('/', authRoute);
 
