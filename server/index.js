@@ -10,7 +10,7 @@ const app = express()
 const MONGODB_URI = process.env.MONGODB_URI;
 
 var jsonParser = bodyParser.json();
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+var urlencodedParser = bodyParser.urlencoded({ extended: true });
 
 app.use(
   cors({
