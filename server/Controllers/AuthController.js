@@ -40,7 +40,7 @@ module.exports.Signup = async (req, res, next) => {
 module.exports.Login = async (req, res, next) => {
   const url = "https://leetcode-frontend-theta.vercel.app";
 
-  res.header("Access-Control-Allow-Origin", url);
+  res.header("Access-Control-Allow-Origin", "https://localhost:3001");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", true);
