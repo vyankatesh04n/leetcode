@@ -9,43 +9,35 @@
     "routes": [
       {
         "src": "/",
-        "dest": "./Middlewares/AuthMiddleware.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Middlewares/AuthMiddleware.js"
       },
       {
         "src": "/login",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Routes/AuthRoute.js"
       },
       {
         "src": "/signup",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Routes/AuthRoute.js"
       },
       {
         "src": "/submit-code",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Routes/AuthRoute.js"
       },
       {
         "src": "/questions",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Routes/AuthRoute.js"
       },
       {
         "src": "/question/:id",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Routes/AuthRoute.js"
       },
       {
         "src": "/submissions/:email",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]        
+        "dest": "./Routes/AuthRoute.js"
       },
       {
         "src": "/submission/:email/:id",
-        "dest": "./Routes/AuthRoute.js",
-        "method": ["GET", "POST", "PUT", "DELETE"]
+        "dest": "./Routes/AuthRoute.js"
       }
     ]
 }
