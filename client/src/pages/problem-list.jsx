@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 export const ProblemList = () => {
-    const url = "https://leetcode-api-sandy.vercel.app";
+    const url = "https://leetcode-server-n9qv.onrender.com";
 
     const [problems, setProblems] = useState([]);
     const navigate = useNavigate();
@@ -13,7 +13,7 @@ export const ProblemList = () => {
 
     const init = async () => {
         try{
-            const response = await axios.get('http://localhost:3000/questions');
+            const response = await axios.get(url + '/questions');
             setProblems(response.data);
         } catch(error) {
             console.error('Error fetching data:', error);

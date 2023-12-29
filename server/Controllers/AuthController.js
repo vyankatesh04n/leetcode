@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
 
 module.exports.Signup = async (req, res, next) => {
-  const url = "https://leetcode-frontend-theta.vercel.app";
+  const url = "https://leetcode-client.onrender.com";
 
   res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
@@ -38,7 +38,7 @@ module.exports.Signup = async (req, res, next) => {
 };
 
 module.exports.Login = async (req, res, next) => {
-  const url = "https://leetcode-frontend-theta.vercel.app";
+  const url = "https://leetcode-client.onrender.com";
 
   res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
@@ -71,7 +71,7 @@ module.exports.Login = async (req, res, next) => {
 }
 
 module.exports.codeSubmit = async (req, res, next) => {
-  const url = "https://leetcode-frontend-theta.vercel.app";
+  const url = "https://leetcode-client.onrender.com";
 
   res.header("Access-Control-Allow-Origin", url);
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");

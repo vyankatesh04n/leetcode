@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 export const Submissions = () => {
-    const url = "https://leetcode-api-sandy.vercel.app";
+    const url = "https://leetcode-server-n9qv.onrender.com";
 
     const [problems, setProblems] = useState([]);
     const navigate = useNavigate();
