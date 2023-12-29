@@ -8,7 +8,7 @@ const authRoute = require("./Routes/AuthRoute");
 
 const app = express()
 // const PORT = process.env.PORT || 3001
-const URL = 'https://leetcode-liart.vercel.app';
+const URL = 'https://leetcode-api-sandy.vercel.app';
 // const HOST = '0.0.0.0';
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -30,7 +30,7 @@ app.use(cookieParser());
 mongoose.connect(MONGODB_URI);
 
 app.get('/', (req, res) => {
-  res.send(200).json({ message: 'Hello World!' });
+  res.json({ message: 'Hello World!' });
 })
 
 app.use ('/', authRoute);

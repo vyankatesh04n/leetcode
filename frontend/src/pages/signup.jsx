@@ -5,7 +5,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () =>{
-    const url = "https://leetcode-liart.vercel.app";
+    const url = "https://leetcode-api-sandy.vercel.app";
 
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({

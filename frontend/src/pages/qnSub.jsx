@@ -6,7 +6,7 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 
 export const QnSub = () => {
-    const url = "https://leetcode-liart.vercel.app";
+    const url = "https://leetcode-api-sandy.vercel.app";
 
     const [submissions, setSubmissions] = useState([]);
     const {email, qid} = useParams();

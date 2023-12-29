@@ -7,7 +7,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 export const Problem = () => {
-    const url = "https://leetcode-liart.vercel.app";
+    const url = "https://leetcode-api-sandy.vercel.app";
 
     const languages = ['C++', 'Java', 'Python'];
     const {id} = useParams();
