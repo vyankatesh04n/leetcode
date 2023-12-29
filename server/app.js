@@ -29,8 +29,8 @@ app.use(cookieParser());
 
 mongoose.connect(MONGODB_URI);
 
-app.get('/', (req, res) => {
-  res.send('working:)');
+app.use('/', (req, res) => {
+  res.send(200).json({message: 'Hello'});
 })
 
 app.use ('/', authRoute);
