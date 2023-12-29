@@ -7,8 +7,7 @@
     "node": "20.x"
   },
   "scripts": {
-    "install-server": "npm install",
-    "start-server": "node index.js"
+    "start": "npm i &&node index.js"
   },
   "author": "",
   "license": "ISC",
