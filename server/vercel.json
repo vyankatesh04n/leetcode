@@ -8,8 +8,44 @@
     ],
     "routes": [
       {
-        "src": "/(.*)",
-        "dest": "index.js"
+        "src": "/",
+        "dest": "./Middlewares/AuthMiddleware.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
+      },
+      {
+        "src": "/login",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
+      },
+      {
+        "src": "/signup",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
+      },
+      {
+        "src": "/submit-code",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
+      },
+      {
+        "src": "/questions",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
+      },
+      {
+        "src": "/question/:id",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
+      },
+      {
+        "src": "/submissions/:email",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]        
+      },
+      {
+        "src": "/submission/:email/:id",
+        "dest": "./Controllers/AuthController.js",
+        "method": ["GET", "POST", "PUT", "DELETE"]
       }
     ]
 }
