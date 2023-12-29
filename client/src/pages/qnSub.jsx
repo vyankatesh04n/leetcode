@@ -15,7 +15,7 @@ export const QnSub = () => {
 
     const init = async () => {
         try{
-            const response = await axios.get(url + "/submissions/" + email + "/" + qid);
+            const response = await axios.get(url + "/submission/" + email + "/" + qid);
             console.log(response.data);
             setSubmissions(response.data);
         } catch(error) {
