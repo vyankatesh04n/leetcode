@@ -29,7 +29,7 @@ export const Problem = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(url + "/submit", {
+            const response = await axios.post(url + "/submit-code", {
                 code,
                 lang: selectedLanguage,
                 qid: parseInt(id),
