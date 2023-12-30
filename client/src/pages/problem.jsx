@@ -92,7 +92,7 @@ export const Problem = () => {
         <>
         <div className="container">
             <div className="row">
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     <h4 className="mt-5">{problem.title}</h4>
                     <hr /> 
                     {problem.io?.map((io, index) => (
@@ -103,7 +103,7 @@ export const Problem = () => {
                         </div>
                     ))}
                 </div>
-                <div className="col-6">
+                <div className="col-12 col-md-6">
                     <div className="col-3 my-3">
                         <select className = "form-select" aria-label="Default select example" value={selectedLanguage} onChange={handleLanguageChange}>
                         {languages.map((language) => (
